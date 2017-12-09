@@ -1,6 +1,6 @@
 # ember-learn-search-components
 
-This README outlines the details of collaborating on this Ember addon.
+This addon is an addon that helps the Ember Learn Team share common search components between the various Ember apps used for various Ember websites.
 
 ## Installation
 
