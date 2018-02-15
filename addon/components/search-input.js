@@ -17,6 +17,7 @@ export default Component.extend({
 
   // Public API
   value: '',
+  projectVersion: 'v3.0.0',
 
   _searchClient: service('algolia'),
 
@@ -39,7 +40,7 @@ export default Component.extend({
 
     const client = get(this, '_searchClient');
     // const projectVersion = get(this, '_projectVersion');
-    const projectVersion = 'v2.16.0';
+    const projectVersion = get(this, 'projectVersion');
 
     // Hide and don't run query if there's no search query
     // if (!query) {
