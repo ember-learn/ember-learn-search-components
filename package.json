@@ -19,7 +19,8 @@
   },
   "dependencies": {
     "ember-cli-babel": "^6.6.0",
-    "ember-cli-htmlbars": "^2.0.1"
+    "ember-cli-htmlbars": "^2.0.1",
+    "ember-cli-sass": "^7.1.5"
   },
   "devDependencies": {
     "algoliasearch": "^3.24.7",
