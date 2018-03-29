@@ -1,0 +1,1 @@
+export { default } from 'ember-learn-search-components/components/search-input/dropdown-header';
