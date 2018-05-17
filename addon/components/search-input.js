@@ -35,6 +35,11 @@ export default Component.extend({
   ],
 
   search: task(function * (query) {
+    if (!query) {
+      return set(this, '_focused', false);
+    } else {
+      set(this, '_focused', true);
+    }
 
     yield timeout(SEARCH_DEBOUNCE_PERIOD);
 
