@@ -5,9 +5,11 @@ import { later } from '@ember/runloop';
 import { denodeify } from 'rsvp';
 import { A } from '@ember/array';
 import { alias } from '@ember/object/computed';
+import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
+import { isPresent } from '@ember/utils';
 import { task, timeout } from 'ember-concurrency';
 
 const SEARCH_DEBOUNCE_PERIOD = 300;
@@ -27,6 +29,9 @@ export default Component.extend({
   // _projectVersion: alias('_projectService.standardisedVersion'),
   _results: A(),
   _focused: false,
+  _dropdownVisible: computed('_focused', 'value', function() {
+    return get(this, '_focused') && isPresent(get(this, 'value'));
+  }),
   _resultTetherConstraints: [
     {
       to: 'window',
@@ -41,11 +46,6 @@ export default Component.extend({
     const client = get(this, '_searchClient');
     // const projectVersion = get(this, '_projectVersion');
     const projectVersion = get(this, 'projectVersion');
-
-    // Hide and don't run query if there's no search query
-    // if (!query) {
-    //   return set(this, '_focused', false);
-    // }
 
     const params = {
       hitsPerPage: 15,
@@ -68,6 +68,12 @@ export default Component.extend({
   }).restartable(),
 
   actions: {
+    oninput(value) {
+      set(this, 'value', value);
+      if(value) {
+        get(this, 'search').perform(value);
+      }
+    },
 
     onfocus() {
       set(this, '_focused', true);

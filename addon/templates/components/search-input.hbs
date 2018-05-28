@@ -2,7 +2,7 @@
   id='search-input'
   type='search'
   value={{value}}
-    oninput={{perform search value='target.value'}}
+    oninput={{action 'oninput' value='target.value'}}
   onfocus={{action 'onfocus'}}
     onblur={{action 'onblur'}}
   placeholder="Search the guides"
@@ -18,7 +18,7 @@
   class='ds-dropdown-results'
 }}
   {{search-input/dropdown
-    isVisible=_focused
+    isVisible=_dropdownVisible
     results=_results
   }}
 {{/ember-tether}}
